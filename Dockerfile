@@ -7,7 +7,7 @@ ARG DOWNLOAD_URL=https://
 ARG DIR_EXTRACT=""
 
 RUN apt-get update \
-  && apt-get upgrade -y \
+  #&& apt-get upgrade -y \
   && apt-get install -y --no-install-recommends \
     apt-utils libgdiplus libsqlite3-dev wget unzip screen nano \
   && apt-get clean \
