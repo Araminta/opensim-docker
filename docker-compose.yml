@@ -1,0 +1,27 @@
+# Use this to build and run the container
+#   Example: docker compose up -d
+# Make sure to set the environment variables in a .env file or your shell
+name: opensim # Project name with configuration name for clarity
+services:
+  opensim:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        - DOWNLOAD_URL=${DOWNLOAD_URL}
+        - DIR_EXTRACT=${DIR_EXTRACT}
+    container_name: opensim_${OS_CONFIG}
+    restart: unless-stopped
+    volumes:
+      #Files
+      - ${VOL_ROOT}\OpenSim.ini:/opt/opensim/bin/OpenSim.ini
+      - ${VOL_ROOT}\OpenSim.db:/opt/opensim/bin/OpenSim.db
+      - ${VOL_ROOT}\${CONFIG_TYPE}Common.ini:/opt/opensim/bin/config-include/${CONFIG_TYPE}Common.ini
+      - ${VOL_ROOT}\FlotsamCache.ini:/opt/opensim/bin/config-include/FlotsamCache.ini
+      #Folders
+      - ${VOL_ROOT}\Backup:/opt/opensim/bin/backup
+      - ${VOL_ROOT}\Estates:/opt/opensim/bin/Estates
+      - ${VOL_ROOT}\Regions:/opt/opensim/bin/Regions
+    ports:
+      - ${PORTS_TCP}:${PORTS_TCP}/tcp
+      - ${PORTS_UDP}:${PORTS_UDP}/udp
