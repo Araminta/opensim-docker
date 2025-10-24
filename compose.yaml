@@ -4,7 +4,7 @@
 name: ${PROJECT_NAME}
 services:
   opensim:
-    image: jbs7106/opensimulator:latest
+    image: opensimulator:latest
     container_name: opensim-${OS_CONFIG}
     restart: unless-stopped
     volumes:
