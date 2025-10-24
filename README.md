@@ -1,5 +1,4 @@
 OpenSim-Docker
 ============
 
-A work in progress.
-
+For documentation purposes.
